@@ -1,0 +1,59 @@
+div.header {
+    display: block;
+    height: 100px;
+    background-color: #808080;
+}
+
+form.login {
+    float: right;
+    padding-right: 10%;
+    padding-top: 20px;
+}
+
+
+h1 {
+    float: left;
+    padding-left: 10%;
+}
+
+div {
+    padding: 0%;
+    margin: 0%;
+    border: 0px;
+}
+
+div.left {
+    background-color: red;
+    width: 20%;
+    display: inline-block;
+    padding: 0%;
+    float: left;
+}
+
+div.center {
+    background-color: blue;
+    display: inline-block;
+    padding: 0%;
+    float: center;
+    width: 60%;
+}
+
+div.right {
+    background-color: green;
+    width: 20%;
+    display: inline-block;
+    padding: 0%;
+    float: right;
+}
+
+body {
+    padding: 0%;
+    margin: 0%;
+    border: 0px;
+}
+
+html {
+    padding: 0%;
+    margin: 0%;
+    border: 0px;
+}
