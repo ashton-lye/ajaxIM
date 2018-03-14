@@ -57,3 +57,18 @@ html {
     margin: 0%;
     border: 0px;
 }
+
+button {
+    display: inline-block;
+    width: 100px;
+    height: 25px;
+}
+
+input {
+    display: inline-block;
+}
+
+p {
+    display: inline-block;
+    padding-left: 40%;
+}

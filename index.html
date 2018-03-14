@@ -6,15 +6,14 @@
     <body>
         <div class="header">
             <h1>Instant Messenger</h1>
-            <form class="login">
-                Username:
-                <input type="text" name="username">
-                <button id="login">Login</button><br>
-                Password : 
-                <input type="text" name="password">
-                
+            
+                <p>Username:</p>
+                <input type="text" id="username">
+                <button id="login" onclick="Javascript:login()">Login</button>
+                <p>Password :</p>
+                <input type="text" id="password">
                 <button id="register">Register</button>
-            </form>
+            
         </div>
         <div class="left">
             <!--online user list-->
@@ -31,5 +30,7 @@
         <div class="footer">
             <!--input here-->
         </div>
+
+        <script src="scripts.js"></script>
     </body>
 </DOCTYPE>
