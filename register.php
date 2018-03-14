@@ -4,7 +4,7 @@
 
     require_once('connect.php');
 
-    $query = "SELECT * FROM users WHERE username = '$username' && password = '$password'";
+    $query = "INSERT INTO users VALUES ($username, $password)";
 
     $result = $con->query($query);
 
