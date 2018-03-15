@@ -9,7 +9,7 @@ CREATE TABLE `users`(
 INSERT INTO `users` (`username`, `password`) VALUES (`admin`,`admin`);
 
 CREATE TABLE `messages`(
-    `messageID` INT(11) NOT NULL,
+    `messageID` INT(11) NOT NULL AUTO_INCREMENT,
     `sender` VARCHAR(20) NOT NULL,
     `message` VARCHAR(255) NOT NULL,
     `date` VARCHAR(10) NOT NULL,

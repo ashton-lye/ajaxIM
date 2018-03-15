@@ -6,9 +6,12 @@
 
     $query = "INSERT INTO users VALUES ($username, $password)";
 
-    $result = $con->query($query);
+    if ($con->query($query) === TRUE) {
+        echo "New User Added Successfully!";
+    }
+    else {
+        echo "borked" .$con->error;
+    }
 
-    $row = $result->fetch();
 
-    echo $row['username']['password'];
 ?>
