@@ -7,3 +7,11 @@ CREATE TABLE `users`(
     PRIMARY KEY(`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 INSERT INTO `users` (`username`, `password`) VALUES (`admin`,`admin`);
+
+CREATE TABLE `messages`(
+    `messageID` INT(11) NOT NULL,
+    `sender` VARCHAR(20) NOT NULL,
+    `message` VARCHAR(255) NOT NULL,
+    `date` VARCHAR(10) NOT NULL,
+    PRIMARY KEY(`messageID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -1,5 +1,5 @@
 <?php
-    $username = $_POST['uname'];
+    /*$username = $_POST['uname'];
     $password = $_POST['pword'];
 
     require_once('connect.php');
@@ -10,5 +10,5 @@
 
     $row = $result->fetch();
 
-    echo $row['username'];
+    echo $row['username'];*/
 ?>

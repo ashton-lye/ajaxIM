@@ -1,3 +1,5 @@
+var loggedInUser = "";
+
 function ajaxRequest(method, url, async, data, callback){
 
 	var request = new XMLHttpRequest();
@@ -33,18 +35,23 @@ function login() {
 
     var url = "login.php";
     var data = "uname="+username+"&pword="+password;
-    ajaxRequest("POST", url, true, data, "checkLogin");
+    ajaxRequest("POST", url, true, data, checkLogin);
 
     
     
 }
 
 function checkLogin(response) {
-    if (response != "") {
-        alert("login successful!")
-    }
     var testQuery = document.getElementById("testQuery");
-    testQuery.innerHTML = data;
+    if (response != "") {
+        loggedInUser = response;
+        testQuery.innerHTML = loggedInUser;
+        alert("Login Successful!")
+    }
+    else {
+        alert("Login Unsuccessful - Please Check Your Details")
+    }
+    
 }
 
 function register() {
@@ -53,4 +60,9 @@ function register() {
     var url = "register.php";
     var data = "uname="+username+"&pword="+password;
     ajaxRequest("POST", url, true, data, "checkLogin");
+}
+
+function sendMessage() {
+    var message = document.getElementById("messageBox").value
+    
 }

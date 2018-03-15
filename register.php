@@ -8,5 +8,7 @@
 
     $result = $con->query($query);
 
-    echo $result;
+    $row = $result->fetch();
+
+    echo $row['username']['password'];
 ?>
