@@ -4,14 +4,17 @@
 
     require_once('connect.php');
 
-    $query = "INSERT INTO users VALUES ($username, $password)";
+    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if ($con->query($query) === TRUE) {
-        echo "New User Added Successfully!";
-    }
-    else {
-        echo "borked" .$con->error;
-    }
+    try {
+        $query = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
 
+        $con->exec($query);
+        echo "New Record Created Successfully";
+    }
+    catch(PDOException $e)
+    {
+        echo $query . "<br>" . $e->getMessage();
+    }
 
 ?>

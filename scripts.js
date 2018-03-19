@@ -26,21 +26,9 @@ function ajaxRequest(method, url, async, data, callback){
 function login() {
     var username = document.getElementById("username").value
     var password = document.getElementById("password").value
-    
-    var testDate = document.getElementById("testDate")
-    var testUser = document.getElementById("tester");
-    var testPass = document.getElementById("tester2");
-    testUser.innerHTML = username;
-    testPass.innerHTML = password;
-    testDate.innerHTML = getDate();
-
-
     var url = "login.php";
     var data = "uname="+username+"&pword="+password;
-    ajaxRequest("POST", url, true, data, checkLogin);
-
-    
-    
+    ajaxRequest("POST", url, true, data, checkLogin);  
 }
 
 function checkLogin(response) {
@@ -68,9 +56,8 @@ function checkRegister(response) {
     var testQuery = document.getElementById("testQuery");
     testQuery.innerHTML = response;
     if (response == "New User Added Successfully!") {
-        //loggedInUser ==
+        //loggedInUser == 
         alert(response)
-        
     }
     else {
         alert(response)
@@ -79,5 +66,26 @@ function checkRegister(response) {
 
 function sendMessage() {
     var message = document.getElementById("messageBox").value
+    var sender = loggedInUser;
+    var url = "sendMessage.php";
+    var data = "sender="+sender+"&message"+message;
 
+    var testSend = document.getElementById("testSend");
+    testSend.innerHTML = sender + data;
+
+    if (loggedInUser != "") {
+        ajaxRequest("POST", url, true, data, checkSend);
+    }
+    else {
+        alert("You must be logged in to send messages");
+    }
+}
+
+function checkSend() {
+    if (response == "Message Sent Successfully") {
+        alert(response);
+    }
+    else {
+        alert(response);
+    }
 }

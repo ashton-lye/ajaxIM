@@ -4,11 +4,16 @@
 
     require_once('connect.php');
 
-    $query = "INSERT INTO messages (sender, message) VALUES ($sender,$message)";
+    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $result = $con->query($query);
+    try {
+        $query = "INSERT INTO messages (sender, message) VALUES ('$sender', '$message')";
 
-    $row = $result->fetch();
-
-    echo $row['username'];
+        $con->exec($query);
+        echo "Message Sent Successfully";
+    }
+    catch(PDOException $e)
+    {
+        echo $query . "<br>" . $e->getMessage();
+    }
 ?>
