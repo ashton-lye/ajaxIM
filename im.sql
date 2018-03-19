@@ -4,9 +4,10 @@ USE `comp333-assn1-im`;
 CREATE TABLE `users`(
     `username` VARCHAR(20) NOT NULL,
     `password` VARCHAR(16) NOT NULL,
+    `status` VARCHAR(7) NOT NULL,
     PRIMARY KEY(`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO `users` (`username`, `password`) VALUES (`admin`,`admin`);
+INSERT INTO `users` (`username`, `password`, `status`) VALUES (`admin`,`admin`, `offline`);
 
 CREATE TABLE `messages`(
     `messageID` INT(11) NOT NULL AUTO_INCREMENT,

@@ -36,12 +36,19 @@ function checkLogin(response) {
     if (response != "") {
         loggedInUser = response;
         testQuery.innerHTML = loggedInUser;
-        alert("Login Successful!")
+        updateStatus("online");
+        alert("Login Successful!");
     }
     else {
-        alert("Login Unsuccessful - Please Check Your Details")
+        alert("Login Unsuccessful - Please Check Your Details");
     }
     
+}
+
+function updateStatus(status) {
+    var url = "updateStatus.php";
+    var data = "username="+loggedInUser+"&status="+status;
+    ajaxRequest("POST", url, true, data, checkUpdate);
 }
 
 function register() {
