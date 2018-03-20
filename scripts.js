@@ -36,6 +36,7 @@ function checkLogin(response) {
     if (response != "") {
         loggedInUser = response;
         testQuery.innerHTML = loggedInUser;
+        refreshMessages();
         updateStatus("online");
         alert("Login Successful!");
     }
@@ -49,6 +50,45 @@ function updateStatus(status) {
     var url = "updateStatus.php";
     var data = "username="+loggedInUser+"&status="+status;
     ajaxRequest("POST", url, true, data, checkUpdate);
+}
+
+function checkUpdate(response) {
+    if (response == "Status updated Successfully") {
+        alert(response);
+    }
+}
+
+function getStatus(status) {
+    var url = "getStatus.php"
+    var data = "status="+status;
+    if (status == "online") {
+        var callback = displayOnline;
+    }
+    else {
+        var callback = displayOffline;
+    }
+    ajaxRequest("POST", url, true, data, callback);
+}
+
+function displayOnline(response) {
+    var onlineList = document.getElementById("onlineUsers");
+    var onlineUsers = JSON.parse(response);
+
+    for(var i = 0; i < onlineUsers.length; i++) {
+        listContent += "<li>"+onlineUsers[i]+"</li>";
+    }
+    onlineList.innerHTML = listContent;
+
+}
+
+function displayOffline(response) {
+    var offlineList = document.getElementById("offlineUsers");
+    var offlineUsers = JSON.parse(response);
+
+    for(var i = 0; i < offlineUsers.length; i++) {
+        listContent += "<li>"+offlineUsers[i]+"</li>";
+    }
+    offlineList.innerHTML = listContent;
 }
 
 function register() {
@@ -112,15 +152,11 @@ function refreshMessages() {
 function checkRefresh(response) {
     var tester = document.getElementById("testRefresh");
     var messageList = document.getElementById("messageList");
-    try {
-        var messages = JSON.parse(response);
-        for(var i = 0; i < messages.length; i++) {
-            messageList.innerHTML = "<li>"+messages[i].sender+": "+messages[i].message;
-        }
-        
+    var listContent = "";
+    var messages = JSON.parse(response);
+
+    for(var i = 0; i < messages.length; i++) {
+        listContent += "<li>"+messages[i].sender+": "+messages[i].message+"</li>";
     }
-    catch {
-        alert("it dun work");
-    }
-    
+    messageList.innerHTML = listContent;    
 }

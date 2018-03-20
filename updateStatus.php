@@ -7,10 +7,10 @@
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     try {
-        $query = "UPDATE users SET status='$status' WHERE username=$username";
+        $query = "UPDATE users SET status='$status' WHERE username='$username'";
 
         $con->exec($query);
-        echo "Message Sent Successfully";
+        echo "Status updated Successfully";
     }
     catch(PDOException $e)
     {
