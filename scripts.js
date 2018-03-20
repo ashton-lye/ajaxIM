@@ -72,27 +72,55 @@ function checkRegister(response) {
 }
 
 function sendMessage() {
-    var message = document.getElementById("messageBox").value
+    var message = document.getElementById("messageBox").value;
     var sender = loggedInUser;
     var url = "sendMessage.php";
-    var data = "sender="+sender+"&message"+message;
+    var data = "sender="+sender+"&message="+message;
 
     var testSend = document.getElementById("testSend");
     testSend.innerHTML = sender + data;
 
-    if (loggedInUser != "") {
+    if (loggedInUser != "" && message != "") {
         ajaxRequest("POST", url, true, data, checkSend);
     }
     else {
-        alert("You must be logged in to send messages");
+        if (loggedInUser == ""){
+            alert("You must be logged in to send messages");
+        }
+        else {
+            alert("Please type a message to send")
+        }
+        
     }
 }
 
-function checkSend() {
+function checkSend(response) {
     if (response == "Message Sent Successfully") {
+        refreshMessages();
         alert(response);
     }
     else {
         alert(response);
     }
+}
+
+function refreshMessages() {
+    var url = "refreshMessages.php";
+    ajaxRequest("POST", url, true, "", checkRefresh)
+}
+
+function checkRefresh(response) {
+    var tester = document.getElementById("testRefresh");
+    var messageList = document.getElementById("messageList");
+    try {
+        var messages = JSON.parse(response);
+        for(var i = 0; i < messages.length; i++) {
+            messageList.innerHTML = "<li>"+messages[i].sender+": "+messages[i].message;
+        }
+        
+    }
+    catch {
+        alert("it dun work");
+    }
+    
 }

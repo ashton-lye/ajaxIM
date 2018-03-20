@@ -80,10 +80,19 @@ input.messageBox {
     display: inline-block;
     width: 80%;
     height: 50px;
+    font-size: 100%;
 }
 
 button.send {
     display: inline-block;
     width: 19%;
     height: 50px;
+}
+
+h3.title {
+    text-align: center;
+}
+
+ul.messageList {
+    list-style-type: none;
 }

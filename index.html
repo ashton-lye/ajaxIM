@@ -7,31 +7,34 @@
         <div class="header">
             <h1>Instant Messenger</h1>
             
-                <p>Username:</p>
-                <input type="text" id="username">
-                <button id="login" onclick="Javascript:login()">Login</button>
-                <p>Password :</p>
-                <input type="text" id="password">
-                <button id="register" onclick="Javascript:register()">Register</button>
+                <p class="loginForm">Username:</p>
+                <input type="text" id="username" class="loginForm">
+                <button id="login" class="loginForm" onclick="Javascript:login()">Login</button>
+                <p class="loginForm">Password :</p>
+                <input type="text" id="password" class="loginForm">
+                <button id="register" class="loginForm" onclick="Javascript:register()">Register</button>
             
         </div>
         <div class="left">
             <!--online user list-->
-            <h3>Online Users</h3>
+            <h3 class="title">Online Users</h3>
             <p id="testQuery">test query</p><br>
             <p id="testSend">test send</p>
+            <p id="testRefresh">test refresh</p>
 
         </div>
         <div class="center">
             <!--chat goes here-->
-            <h3>Chat History</h3>
-            <p id="messages"></p><br>
-            <input type="text" id="messsageBox" class="messageBox">
-            <button id="sendMessage" onclick="Javascript:sendMessage()">Send</button>
+            <h3 class="title">Chat History</h3>
+            <ul id="messageList" class="messageList">
+                <!--javascript adds messages here (theoretically)-->
+            </ul>
+            <input type="text" id="messageBox" class="messageBox">
+            <button id="sendMessage" class="send" onclick="Javascript:sendMessage()">Send</button>
         </div>
         <div class="right">
             <!--offline users-->
-            <h3>Offline Users</h3>
+            <h3 class="title">Offline Users</h3>
         </div>
         <div class="footer">
             <!--input here-->

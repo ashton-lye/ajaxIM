@@ -7,7 +7,7 @@
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     try {
-        $query = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+        $query = "INSERT INTO users (username, password, status) VALUES ('$username', '$password', 'offline')";
 
         $con->exec($query);
         echo "New Record Created Successfully";
