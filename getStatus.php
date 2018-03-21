@@ -3,7 +3,7 @@
 
     require_once('connect.php');
 
-    $query = "SELECT * FROM users WHERE status = '$status'";
+    $query = "SELECT username, status FROM users";
 
     $result = $con->query($query);
 
@@ -11,7 +11,8 @@
 
     while ($row = $result->fetch()) {
         $arr[] = array (
-            "user" => $row ['username'],
+            "user" => $row['username'],
+            "status" => $row['status'],
         );
     }
 

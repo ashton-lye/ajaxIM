@@ -58,19 +58,32 @@ function checkUpdate(response) {
     }
 }
 
-function getStatus(status) {
+function getStatus() {
     var url = "getStatus.php"
-    var data = "status="+status;
-    if (status == "online") {
-        var callback = displayOnline;
-    }
-    else {
-        var callback = displayOffline;
-    }
-    ajaxRequest("POST", url, true, data, callback);
+    ajaxRequest("POST", url, true, "", displayStatus);
 }
 
-function displayOnline(response) {
+function displayStatus() {
+    var onlineList = document.getElementById("onlineUsers");
+    var offlineList = document.getElementById("offlineUsers");
+    var userList = JSON.parse(response);
+
+    var onlineListContent = "";
+    var offlineListContent = "";
+
+    for(var i = 0; i < userList.length; i++) {
+        if (userList[i].status == "online") {
+            onlineListContent += "<li>"+userList[i].username+"</li>";
+        }
+        else {
+            offlineListContent += "<li>"+userList[i].username+"</li>";
+        }
+    }
+    onlineList.innerHTML = onlineListContent;
+    offlineList.innerHTML = offlineListContent;
+}
+
+/*function displayOnline(response) {
     var onlineList = document.getElementById("onlineUsers");
     var onlineUsers = JSON.parse(response);
 
@@ -89,7 +102,7 @@ function displayOffline(response) {
         listContent += "<li>"+offlineUsers[i]+"</li>";
     }
     offlineList.innerHTML = listContent;
-}
+}*/
 
 function register() {
     var username = document.getElementById("username").value
