@@ -23,29 +23,40 @@ function ajaxRequest(method, url, async, data, callback){
 	request.send(data);
 }
 
+//Login Functions
 function login() {
-    var username = document.getElementById("username").value
-    var password = document.getElementById("password").value
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
     var url = "login.php";
-    var data = "uname="+username+"&pword="+password;
+    var data = "username="+username+"&password="+password;
     ajaxRequest("POST", url, true, data, checkLogin);  
 }
 
 function checkLogin(response) {
-    var testQuery = document.getElementById("testQuery");
     if (response != "") {
         loggedInUser = response;
-        testQuery.innerHTML = loggedInUser;
-        refreshMessages();
+
         updateStatus("online");
+        refreshMessages();
+        getStatus();
         alert("Login Successful!");
     }
     else {
         alert("Login Unsuccessful - Please Check Your Details");
-    }
-    
+    }   
 }
 
+//Logout Functions
+function logout() {
+    var messages = document.getElementById("messageList");
+    messages.innerHTML = "";
+    updateStatus("offline");
+    alert("Logged Out");
+    loggedInUser = "";
+    getStatus();
+}
+
+//Updating the Status of Users - Online & Offline
 function updateStatus(status) {
     var url = "updateStatus.php";
     var data = "username="+loggedInUser+"&status="+status;
@@ -58,80 +69,60 @@ function checkUpdate(response) {
     }
 }
 
+//Getting the Lists of Online and Offline Users
 function getStatus() {
     var url = "getStatus.php"
     ajaxRequest("POST", url, true, "", displayStatus);
 }
 
-function displayStatus() {
+function displayStatus(response) {
     var onlineList = document.getElementById("onlineUsers");
     var offlineList = document.getElementById("offlineUsers");
     var userList = JSON.parse(response);
+
+    var tester = document.getElementById("tester");
+    tester.innerHTML = JSON.stringify(response);
 
     var onlineListContent = "";
     var offlineListContent = "";
 
     for(var i = 0; i < userList.length; i++) {
         if (userList[i].status == "online") {
-            onlineListContent += "<li>"+userList[i].username+"</li>";
+            onlineListContent += "<li>"+userList[i].user+"</li>";
         }
         else {
-            offlineListContent += "<li>"+userList[i].username+"</li>";
+            offlineListContent += "<li>"+userList[i].user+"</li>";
         }
     }
+    alert(onlineListContent)
     onlineList.innerHTML = onlineListContent;
     offlineList.innerHTML = offlineListContent;
 }
 
-/*function displayOnline(response) {
-    var onlineList = document.getElementById("onlineUsers");
-    var onlineUsers = JSON.parse(response);
-
-    for(var i = 0; i < onlineUsers.length; i++) {
-        listContent += "<li>"+onlineUsers[i]+"</li>";
-    }
-    onlineList.innerHTML = listContent;
-
-}
-
-function displayOffline(response) {
-    var offlineList = document.getElementById("offlineUsers");
-    var offlineUsers = JSON.parse(response);
-
-    for(var i = 0; i < offlineUsers.length; i++) {
-        listContent += "<li>"+offlineUsers[i]+"</li>";
-    }
-    offlineList.innerHTML = listContent;
-}*/
-
+//Registering a New User
 function register() {
-    var username = document.getElementById("username").value
-    var password = document.getElementById("password").value
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
     var url = "register.php";
     var data = "uname="+username+"&pword="+password;
     ajaxRequest("POST", url, true, data, checkRegister);
 }
 
 function checkRegister(response) {
-    var testQuery = document.getElementById("testQuery");
-    testQuery.innerHTML = response;
-    if (response == "New User Added Successfully!") {
-        //loggedInUser == 
-        alert(response)
+    if (response == "New Record Created Successfully") {
+        alert("New User Registered Successfully - Login to Continue")
     }
     else {
         alert(response)
     }
 }
 
+//Sending Messages
 function sendMessage() {
     var message = document.getElementById("messageBox").value;
     var sender = loggedInUser;
     var url = "sendMessage.php";
     var data = "sender="+sender+"&message="+message;
-
-    var testSend = document.getElementById("testSend");
-    testSend.innerHTML = sender + data;
 
     if (loggedInUser != "" && message != "") {
         ajaxRequest("POST", url, true, data, checkSend);
@@ -142,14 +133,14 @@ function sendMessage() {
         }
         else {
             alert("Please type a message to send")
-        }
-        
+        } 
     }
 }
 
 function checkSend(response) {
     if (response == "Message Sent Successfully") {
         refreshMessages();
+        getStatus();
         alert(response);
     }
     else {
@@ -157,13 +148,14 @@ function checkSend(response) {
     }
 }
 
+//Refreshing the Message List
 function refreshMessages() {
     var url = "refreshMessages.php";
-    ajaxRequest("POST", url, true, "", checkRefresh)
+    ajaxRequest("POST", url, true, "", displayMessages);
+    
 }
 
-function checkRefresh(response) {
-    var tester = document.getElementById("testRefresh");
+function displayMessages(response) {
     var messageList = document.getElementById("messageList");
     var listContent = "";
     var messages = JSON.parse(response);

@@ -1,6 +1,6 @@
 <?php
-    $username = $_POST['uname'];
-    $password = $_POST['pword'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
     require_once('connect.php');
 

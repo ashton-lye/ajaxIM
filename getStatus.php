@@ -1,9 +1,9 @@
 <?php
-    $status = $_POST['status'];
 
     require_once('connect.php');
 
     $query = "SELECT username, status FROM users";
+    $arr = [];
 
     $result = $con->query($query);
 
