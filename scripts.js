@@ -18,8 +18,8 @@ function ajaxRequest(method, url, async, data, callback){
 				alert(request.statusText);
 			}
 		}
-	}
-	
+    }
+    
 	request.send(data);
 }
 
@@ -35,7 +35,6 @@ function login() {
 function checkLogin(response) {
     if (response != "") {
         loggedInUser = response;
-
         updateStatus("online");
         refreshMessages();
         getStatus();
@@ -65,13 +64,13 @@ function updateStatus(status) {
 
 function checkUpdate(response) {
     if (response == "Status updated Successfully") {
-        alert(response);
+        console.log(response);
     }
 }
 
 //Getting the Lists of Online and Offline Users
 function getStatus() {
-    var url = "getStatus.php"
+    var url = "getStatus.php";
     ajaxRequest("POST", url, true, "", displayStatus);
 }
 
@@ -79,9 +78,6 @@ function displayStatus(response) {
     var onlineList = document.getElementById("onlineUsers");
     var offlineList = document.getElementById("offlineUsers");
     var userList = JSON.parse(response);
-
-    var tester = document.getElementById("tester");
-    tester.innerHTML = JSON.stringify(response);
 
     var onlineListContent = "";
     var offlineListContent = "";
@@ -94,7 +90,6 @@ function displayStatus(response) {
             offlineListContent += "<li>"+userList[i].user+"</li>";
         }
     }
-    alert(onlineListContent)
     onlineList.innerHTML = onlineListContent;
     offlineList.innerHTML = offlineListContent;
 }
@@ -110,10 +105,10 @@ function register() {
 
 function checkRegister(response) {
     if (response == "New Record Created Successfully") {
-        alert("New User Registered Successfully - Login to Continue")
+        alert("New User Registered Successfully - Login to Continue");
     }
     else {
-        alert(response)
+        alert(response);
     }
 }
 
@@ -132,16 +127,17 @@ function sendMessage() {
             alert("You must be logged in to send messages");
         }
         else {
-            alert("Please type a message to send")
+            alert("Please type a message to send");
         } 
     }
 }
 
 function checkSend(response) {
+    var message = document.getElementById("messageBox");
     if (response == "Message Sent Successfully") {
         refreshMessages();
         getStatus();
-        alert(response);
+        message.value = " ";
     }
     else {
         alert(response);
@@ -152,7 +148,6 @@ function checkSend(response) {
 function refreshMessages() {
     var url = "refreshMessages.php";
     ajaxRequest("POST", url, true, "", displayMessages);
-    
 }
 
 function displayMessages(response) {
