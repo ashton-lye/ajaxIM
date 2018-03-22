@@ -61,6 +61,8 @@ function login() {
 function checkLogin(response) {
     if (response != "") {
         loggedInUser = response;
+        usernameInput.value = "";
+        passwordInput.value = "";
         loggedInLabel.innerHTML = "You are logged in as "+loggedInUser;
         updateStatus("online");
         refreshMessages();
@@ -77,7 +79,7 @@ function checkLogin(response) {
 function logout() {
     var messages = document.getElementById("messageList");
     messages.innerHTML = "";
-    loggedInLabel.innerHTML = "You are not currently logged in";
+    loggedInLabel.innerHTML = "You are not logged in";
     updateStatus("offline");
     hideLogin();
     loggedInUser = "";
@@ -167,7 +169,7 @@ function checkSend(response) {
     if (response == "Message Sent Successfully") {
         refreshMessages();
         getStatus();
-        messageInput.value = " ";
+        messageInput.value = "";
     }
     else {
         alert(response);
