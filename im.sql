@@ -7,7 +7,8 @@ CREATE TABLE `users`(
     `status` VARCHAR(7) NOT NULL,
     PRIMARY KEY(`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO `users` (`username`, `password`, `status`) VALUES (`admin`,`admin`, `offline`);
+INSERT INTO `users` (`username`, `password`, `status`) VALUES ('admin','admin', 'offline');
+INSERT INTO `users` (`username`, `password`, `status`) VALUES ('Test','Test', 'offline');
 
 CREATE TABLE `messages`(
     `messageID` INT(11) NOT NULL AUTO_INCREMENT,

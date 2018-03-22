@@ -1,7 +1,9 @@
 <?php
+    $date = $_POST['date'];
+
     require_once('connect.php');
 
-    $query = "SELECT * FROM messages";
+    $query = "SELECT * FROM messages WHERE date = '$date'";
     $arr = [];
 
     $result = $con->query($query);

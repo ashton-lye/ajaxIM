@@ -6,19 +6,25 @@
     <body onload="Javascript:getStatus()">
         <div class="header">
             <h1>Instant Messenger</h1>
-            
-                <p class="loginForm">Username:</p>
+                <!--These are only visible when no user is logged in-->
+                <p id="userLabel" class="loginForm">Username:</p>
                 <input type="text" id="username" class="loginForm">
                 <button id="login" class="loginForm" onclick="Javascript:login()">Login</button>
                 <button id="register" class="loginForm" onclick="Javascript:register()">Register</button>
-                <p class="loginForm">Password :</p>
+                <p id="passLabel" class="loginForm">Password :</p>
                 <input type="text" id="password" class="loginForm">
-                <button id="logout" onclick="Javascript:logout()">Logout</button>
+                <button id="logout" class="logout" onclick="Javascript:logout()">Logout</button>
+                
+                <!--These are only visible when a user is logged in, i.e when the other stuff isn't-->
+                
+                
+            
             
         </div>
         <div class="left">
             <!--online user list-->
             <h3 class="title">Online Users</h3>
+            <h4 id="loggedIn">You are not currently Logged In</h4>
             <ul id="onlineUsers">
                 <!--javascript adds list of online users here-->
             </ul>
