@@ -8,8 +8,6 @@
 
     $result = $con->query($query);
 
-    $row = $result->fetch();
-
     while ($row = $result->fetch()) {
         $arr[] = array (
             "id" => $row ['messageID'],

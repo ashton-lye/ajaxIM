@@ -6,14 +6,15 @@
     <body onload="Javascript:getStatus()">
         <div class="header">
             <h1>Instant-ish Messenger</h1>
-                <!--These are only visible when no user is logged in-->
+                <!--These are only visible when no user is logged in, except logout button which is always visible-->
                 <p id="userLabel" class="loginForm">Username:</p>
-                <input type="text" id="username" class="loginForm">
-                <button id="login" class="loginForm" onclick="Javascript:login()">Login</button>
-                <button id="register" class="loginForm" onclick="Javascript:register()">Register</button>
+                <input type="text" id="username" placeholder="Username">
+                <button id="login" onclick="Javascript:login()">Login</button>
+                <button id="logout" onclick="Javascript:logout()">Logout</button>
                 <p id="passLabel" class="loginForm">Password :</p>
-                <input type="text" id="password" class="loginForm">
-                <button id="logout" class="logout" onclick="Javascript:logout()">Logout</button>    
+                <input type="text" id="password" placeholder="Password">
+                <button id="register" onclick="Javascript:register()">Register</button>
+                    
         </div>
         <div class="left">
             <!--online user list-->
@@ -38,8 +39,8 @@
             </ul>
         </div>
         <div class="footer">
-            <input type="text" id="messageBox" class="messageBox">
-            <button id="sendMessage" class="send" onclick="Javascript:sendMessage()">Send</button>
+            <input type="text" id="messageBox" placeholder="Enter your Message Here">
+            <button id="sendMessage" onclick="Javascript:sendMessage()">Send</button>
         </div>
 
         <script src="scripts.js"></script>

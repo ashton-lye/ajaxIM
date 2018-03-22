@@ -7,8 +7,6 @@
 
     $result = $con->query($query);
 
-    $row = $result->fetch();
-
     while ($row = $result->fetch()) {
         $arr[] = array (
             "user" => $row['username'],

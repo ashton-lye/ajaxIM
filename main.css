@@ -1,10 +1,8 @@
-div.header {
-    display: block;
-    height: 100px;
-    background-color: #0d47a1;
-    border-bottom: 10px, solid, black;
+body {
+    padding: 0%;
+    margin: 0%;
+    border: 0px;
 }
-
 
 h1 {
     float: left;
@@ -12,14 +10,15 @@ h1 {
     color: #FFFFFF; 
 }
 
-div {
-    padding: 0%;
-    margin: 0%;
-    border: 0px;
-}
-
 h4 {
     text-align: center;
+}
+
+div.header {
+    display: block;
+    height: 100px;
+    background-color: #0d47a1;
+    border-bottom: 10px, solid, black;
 }
 
 div.left {
@@ -53,21 +52,18 @@ div.right {
     height: 100%;
 }
 
-body {
-    padding: 0%;
-    margin: 0%;
-    border: 0px;
-}
-
-html {
-    padding: 0%;
-    margin: 0%;
-    border: 0px;
+div.footer {
+    background-color: #0d47a1;
+    width: 100%;
+    float: center;
+    bottom: 0;
+    position: fixed;
+    padding-left: 20%;
+    height: 10%;
 }
 
 button {
     display: inline-block;
-    visibility: visible;
     width: 100px;
     height: 25px;
 }
@@ -83,7 +79,7 @@ p.loginForm {
     color: #FFFFFF;
 }
 
-input.messageBox {
+#messageBox {
     display: inline-block;
     width: 50%;
     height: 50px;
@@ -91,21 +87,11 @@ input.messageBox {
     margin-top: 1%; 
 }
 
-button.send {
+#sendMessage {
     display: inline-block;
     width: 10%;
     height: 50px;
     margin-top: 1%;
-}
-
-div.footer {
-    background-color: #0d47a1;
-    width: 100%;
-    float: center;
-    bottom: 0;
-    position: fixed;
-    padding-left: 20%;
-    height: 10%;
 }
 
 h3.title {
@@ -119,9 +105,4 @@ ul {
 li.left {
     text-align: right;
     padding-right: 20%;
-}
-
-
-button.logout {
-    visibility: visible;
 }

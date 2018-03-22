@@ -1,10 +1,13 @@
+//Create some references to elements up here to keep it tidy down below
 var loggedInUser = "";
 var loggedInLabel = document.getElementById("loggedIn");
 var usernameInput = document.getElementById("username");
 var passwordInput = document.getElementById("password");
 var messageInput = document.getElementById("messageBox");
 
-var refreshTimer = setInterval(refreshMessages, 5000);
+//Timer for refreshing messaage list - runs every 5 seconds
+var refreshMessageTimer = setInterval(refreshMessages, 5000);
+var refreshStatusTimer = setInterval(getStatus, 5000);
 
 //get the date, only need to display today's messages
 var date = new Date();
@@ -41,7 +44,7 @@ function ajaxRequest(method, url, async, data, callback){
 			}
 		}
     }
-    
+
 	request.send(data);
 }
 
@@ -77,8 +80,8 @@ function logout() {
     loggedInLabel.innerHTML = "You are not currently logged in";
     updateStatus("offline");
     hideLogin();
-    getStatus();
     loggedInUser = "";
+    getStatus();
     alert("Logged Out");
 }
 
@@ -187,12 +190,11 @@ function displayMessages(response) {
         listContent += "<li>"+messages[i].sender+": "+messages[i].message+"</li>";
     }
     if (loggedInUser != "") {
-        console.log(loggedInUser);
         messageList.innerHTML = listContent; 
     }    
 }
 
-//Hide login stuffs while logged in
+//Hide/show login stuffs while logged in/out
 function hideLogin() {
     var loginButton = document.getElementById("login");
     var registerButton = document.getElementById("register");
