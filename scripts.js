@@ -9,6 +9,13 @@ var messageInput = document.getElementById("messageBox");
 var refreshMessageTimer = setInterval(refreshMessages, 5000);
 var refreshStatusTimer = setInterval(getStatus, 5000);
 
+//Add event listener so message will send when enter key is pressed
+window.onkeypress = function(event) {
+    if (event.keyCode === 13) {
+        sendMessage();
+    }
+}
+
 //get the date, only need to display today's messages
 var date = new Date();
 var dd = date.getDate();
