@@ -1,4 +1,10 @@
 var loggedInUser = "";
+var loggedInLabel = document.getElementById("loggedIn");
+var usernameInput = document.getElementById("username");
+var passwordInput = document.getElementById("password");
+var messageInput = document.getElementById("messageBox");
+
+var refreshTimer = setInterval(refreshMessages, 5000);
 
 //get the date, only need to display today's messages
 var date = new Date();
@@ -41,8 +47,9 @@ function ajaxRequest(method, url, async, data, callback){
 
 //Login Functions
 function login() {
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
+    var username = usernameInput.value;
+    var password = passwordInput.value;
+    console.log(username, password);
     var url = "login.php";
     var data = "username="+username+"&password="+password;
     ajaxRequest("POST", url, true, data, checkLogin);  
@@ -51,6 +58,7 @@ function login() {
 function checkLogin(response) {
     if (response != "") {
         loggedInUser = response;
+        loggedInLabel.innerHTML = "You are logged in as "+loggedInUser;
         updateStatus("online");
         refreshMessages();
         getStatus();
@@ -66,11 +74,12 @@ function checkLogin(response) {
 function logout() {
     var messages = document.getElementById("messageList");
     messages.innerHTML = "";
+    loggedInLabel.innerHTML = "You are not currently logged in";
     updateStatus("offline");
-    alert("Logged Out");
-    loggedInUser = "";
-    getStatus();
     hideLogin();
+    getStatus();
+    loggedInUser = "";
+    alert("Logged Out");
 }
 
 //Updating the Status of Users - Online & Offline
@@ -114,8 +123,8 @@ function displayStatus(response) {
 
 //Registering a New User
 function register() {
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
+    var username = usernameInput.value;
+    var password = usernameInput.value;
     var url = "register.php";
     var data = "uname="+username+"&pword="+password;
     ajaxRequest("POST", url, true, data, checkRegister);
@@ -132,7 +141,7 @@ function checkRegister(response) {
 
 //Sending Messages
 function sendMessage() {
-    var message = document.getElementById("messageBox").value;
+    var message = messageInput.value;
     var sender = loggedInUser;
 
     var url = "sendMessage.php";
@@ -152,11 +161,10 @@ function sendMessage() {
 }
 
 function checkSend(response) {
-    var message = document.getElementById("messageBox");
     if (response == "Message Sent Successfully") {
         refreshMessages();
         getStatus();
-        message.value = " ";
+        messageInput.value = " ";
     }
     else {
         alert(response);
@@ -178,34 +186,33 @@ function displayMessages(response) {
     for(var i = 0; i < messages.length; i++) {
         listContent += "<li>"+messages[i].sender+": "+messages[i].message+"</li>";
     }
-    messageList.innerHTML = listContent;    
+    if (loggedInUser != "") {
+        console.log(loggedInUser);
+        messageList.innerHTML = listContent; 
+    }    
 }
 
 //Hide login stuffs while logged in
 function hideLogin() {
-    var userInput = document.getElementById("username");
-    var passInput = document.getElementById("password");
     var loginButton = document.getElementById("login");
     var registerButton = document.getElementById("register");
     var userLabel = document.getElementById("userLabel");
     var passLabel = document.getElementById("passLabel");
-    var loggedInLabel = document.getElementById("loggedIn");
+
+    var elementArray = [usernameInput, passwordInput, loginButton, registerButton, userLabel, passLabel]
 
     if (loggedInUser != "") {
-        loggedInLabel.innerHTML = "You are logged in as "+loggedInUser;
+        
+        for(var i = 0; i < elementArray.length; i++) {
+            if (elementArray[i].style.visibility === "hidden") {
+                elementArray[i].style.visibility = "visible";
+            }
+            else {
+                elementArray[i].style.visibility = "hidden";
+            } 
+        }   
     }
     else {
         loggedInLabel.innerHTML = "You are not currently Logged In";
-    }
-
-    var elementArray = [userInput, passInput, loginButton, registerButton, userLabel, passLabel]
-
-    for(var i = 0; i < elementArray.length; i++) {
-        if (elementArray[i].style.visibility === "hidden") {
-            elementArray[i].style.visibility = "visible";
-        }
-        else {
-            elementArray[i].style.visibility = "hidden";
-        } 
-    }
+    }    
 }
