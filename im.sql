@@ -18,10 +18,11 @@ CREATE TABLE `messages`(
     `sender` VARCHAR(20) NOT NULL,
     `message` VARCHAR(255) NOT NULL,
     `date` VARCHAR(10) NOT NULL,
+    `receiver` VARCHAR(20) NOT NULL,
     PRIMARY KEY(`messageID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO `messages` (`sender`, `message`, `date`) VALUES ('AgentScarn','Hey Guys, how was the weekend?', '23/03/2018');
-INSERT INTO `messages` (`sender`, `message`, `date`) VALUES ('DwightShelford','Pretty good, you?', '23/03/2018');
-INSERT INTO `messages` (`sender`, `message`, `date`) VALUES ('JimSantanko','Not too shabby', '23/03/2018');
-INSERT INTO `messages` (`sender`, `message`, `date`) VALUES ('DwightShelford','I got some cool new gear in Second Life', '23/03/2018');
-INSERT INTO `messages` (`sender`, `message`, `date`) VALUES ('WUPHF.COM','Thats awesome, Dwight! Why not write a Wuphf post about it on www.wuphf.com!', '23/03/2018');
+INSERT INTO `messages` (`sender`, `message`, `date`, `receiver`) VALUES ('AgentScarn','Hey Guys, how was the weekend?', '23/03/2018', 'all');
+INSERT INTO `messages` (`sender`, `message`, `date`, `receiver`) VALUES ('DwightShelford','Pretty good, you?', '23/03/2018', 'all');
+INSERT INTO `messages` (`sender`, `message`, `date`, `receiver`) VALUES ('JimSantanko','Not too shabby', '23/03/2018', 'all');
+INSERT INTO `messages` (`sender`, `message`, `date`, `receiver`) VALUES ('DwightShelford','I got some cool new gear in Second Life', '23/03/2018', 'all');
+INSERT INTO `messages` (`sender`, `message`, `date`, `receiver`) VALUES ('WUPHF.COM','Thats awesome, Dwight! Why not write a Wuphf post about it on www.wuphf.com!', '23/03/2018', 'all');

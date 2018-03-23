@@ -155,9 +155,20 @@ function checkRegister(response) {
 function sendMessage() {
     var message = messageInput.value;
     var sender = loggedInUser;
+    var receiver = "";
+
+    var checkPM = message.search("@");
+    var recieverEnd = message.search(" ");
+
+    if (checkPM != -1) {
+        var receiver = message.substr(checkPM+1, recieverEnd-1);
+    }
+    else {
+        receiver = "all";
+    }
 
     var url = "sendMessage.php";
-    var data = "sender="+sender+"&message="+message+"&date="+date;
+    var data = "sender="+sender+"&message="+message+"&date="+date+"&receiver="+receiver;
 
     if (loggedInUser != "" && message != "") {
         ajaxRequest("POST", url, true, data, checkSend);
@@ -186,7 +197,7 @@ function checkSend(response) {
 //Refreshing the Message List
 function refreshMessages() {
     var url = "refreshMessages.php";
-    var data = "date="+date;
+    var data = "date="+date+"&username="+loggedInUser;
     ajaxRequest("POST", url, true, data, displayMessages);
 }
 

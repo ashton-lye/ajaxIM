@@ -1,9 +1,10 @@
 <?php
     $date = $_POST['date'];
+    $username = $_POST['username'];
 
     require_once('connect.php');
 
-    $query = "SELECT * FROM messages WHERE date = '$date'";
+    $query = "SELECT * FROM messages WHERE date = '$date' && receiver = '$username' OR receiver = 'all' OR sender = '$username'";
     $arr = [];
 
     $result = $con->query($query);
