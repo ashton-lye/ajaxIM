@@ -59,7 +59,7 @@ div.footer {
     bottom: 0;
     position: fixed;
     padding-left: 20%;
-    height: 10%;
+    height: 120px;
 }
 
 button {
@@ -83,15 +83,13 @@ p.loginForm {
     display: inline-block;
     width: 50%;
     height: 50px;
-    font-size: 100%;
-    margin-top: 1%; 
+    font-size: 100%; 
 }
 
 #sendMessage {
     display: inline-block;
     width: 10%;
     height: 50px;
-    margin-top: 1%;
 }
 
 h3.title {
@@ -105,4 +103,8 @@ ul {
 li.left {
     text-align: right;
     padding-right: 20%;
+}
+
+#tagInstructions {
+    color: #FFFFFF;
 }

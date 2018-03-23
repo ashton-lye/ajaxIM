@@ -155,8 +155,9 @@ function checkRegister(response) {
 function sendMessage() {
     var message = messageInput.value;
     var sender = loggedInUser;
+    
+    //extra code to set a reciever if there is a tagged user
     var receiver = "";
-
     var checkPM = message.search("@");
     var recieverEnd = message.search(" ");
 
@@ -167,6 +168,7 @@ function sendMessage() {
         receiver = "all";
     }
 
+    //actually sending the message
     var url = "sendMessage.php";
     var data = "sender="+sender+"&message="+message+"&date="+date+"&receiver="+receiver;
 
