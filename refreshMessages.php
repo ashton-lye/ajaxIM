@@ -4,7 +4,7 @@
 
     require_once('connect.php');
 
-    $query = "SELECT * FROM messages WHERE date = '$date' && receiver = '$username' OR receiver = 'all' OR sender = '$username'";
+    $query = "SELECT * FROM messages WHERE date = '$date' && (receiver = '$username' OR receiver = 'all' OR sender = '$username')";
     $arr = [];
 
     $result = $con->query($query);
