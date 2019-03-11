@@ -1,5 +1,5 @@
 <?php
-
+    //query to retrieve user statuses - online/offline etc
     require_once('connect.php');
 
     $query = "SELECT username, status FROM users";

@@ -1,4 +1,5 @@
 <?php
+    //query for adding new users to database
     $username = $_POST['uname'];
     $password = $_POST['pword'];
 

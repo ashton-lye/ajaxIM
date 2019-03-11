@@ -1,4 +1,5 @@
 <?php
+    //query to update user status when they log in and out
     $username = $_POST['username'];
     $status = $_POST['status'];
 

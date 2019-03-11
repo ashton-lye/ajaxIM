@@ -1,4 +1,5 @@
 <?php
+    //query for sending a message - inserting into db
     $sender = $_POST['sender'];
     $message = $_POST['message'];
     $date = $_POST['date'];
